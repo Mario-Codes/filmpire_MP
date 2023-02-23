@@ -1,13 +1,25 @@
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable import/no-named-as-default-member */
+/* eslint-disable import/no-named-as-default */
+// eslint-disable-next-line
 import React from 'react';
 import ReactDOM from 'react-dom';
-// eslint-disable-next-line
 import { BrowserRouter } from 'react-router-dom';
-// eslint-disable-next-line
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Provider } from 'react-redux';
+
 import App from './components/App';
+import store from './app/store';
+
+const theme = createTheme({});
 
 ReactDOM.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
+  <Provider store={store}>
+    <ThemeProvider theme={theme}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </ThemeProvider>,
+  </Provider>,
   document.getElementById('root'),
 );
