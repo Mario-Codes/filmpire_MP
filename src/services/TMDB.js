@@ -8,7 +8,7 @@ export const tmdbApi = createApi({
   endpoints: (builder) => ({
     //* Get Genres
     getGenres: builder.query({
-      query: () => `genre/movie/list?api_key=${tmdbApiKey}`,
+      query: () => `/genre/movie/list?api_key=${tmdbApiKey}`,
     }),
 
     //* Get Movies by [Type]
@@ -16,12 +16,12 @@ export const tmdbApi = createApi({
       query: ({ genreIdOrCategoryName, page, searchQuery }) => {
         //* Get Movies by Search
         if (searchQuery) {
-          return `/search/movie?query=${searchQuery}&page-${page}&api_key=${tmdbApiKey}`;
+          return `/search/movie?query=${searchQuery}&page=${page}&api_key=${tmdbApiKey}`;
         }
 
         //* Get Movies by Category
         if (genreIdOrCategoryName && typeof genreIdOrCategoryName === 'string') {
-          return `movie/${genreIdOrCategoryName}?page=${page}&api_key=${tmdbApiKey}`;
+          return `/movie/${genreIdOrCategoryName}?page=${page}&api_key=${tmdbApiKey}`;
         }
 
         //* Get Movies by Genre
@@ -40,8 +40,20 @@ export const tmdbApi = createApi({
     }),
 
     //* Get User Specific List
+    getList: builder.query({
+      query: ({ listName, accountId, sessionId, page }) => `/account/${accountId}/${listName}?api_key=${tmdbApiKey}&session_id=${sessionId}&page=${page}`
+    }),
+
     getRecommendations: builder.query({
       query: ({ movie_id, list }) => `/movie/${movie_id}/${list}?api_key=${tmdbApiKey}`,
+    }),
+
+    getActorsDetails: builder.query({
+      query: (id) => `person/${id}?api_key=${tmdbApiKey}`,
+    }),
+
+    getMoviesByActorsId: builder.query({
+      query: ({ id, page }) => `/discover/movie?with_cast=${id}&page=${page}&api_key=${tmdbApiKey}`,
     }),
   }),
 });
@@ -50,5 +62,9 @@ export const {
   useGetGenresQuery,
   useGetMoviesQuery,
   useGetMovieQuery,
+  useGetListQuery,
   useGetRecommendationsQuery,
+  useGetActorsDetailsQuery,
+  useGetMoviesByActorsIdQuery,
+
 } = tmdbApi;
