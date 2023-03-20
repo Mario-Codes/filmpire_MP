@@ -17,7 +17,7 @@ export default makeStyles((theme) => ({
     width: '80%',
     [theme.breakpoints.down('md')]: {
       margin: '0 auto',
-      width: '50%%',
+      width: '50%',
     },
     [theme.breakpoints.down('sm')]: {
       margin: '0 auto',

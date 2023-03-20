@@ -1,8 +1,8 @@
+/* eslint-disable import/no-cycle */
 import React from 'react';
-import { Typography } from '@mui/material';
+import { Typography, Box } from '@mui/material';
 
-import { Box } from '@mui/system';
-import { Movie } from '..';
+import { Movie } from '../index';
 import useStyles from './styles';
 
 const RatedCards = ({ title, data }) => {

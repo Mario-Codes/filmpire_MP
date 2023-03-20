@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable import/no-extraneous-dependencies */
 import { makeStyles } from '@mui/styles';
-import { textAlign } from '@mui/system';
 
 export default makeStyles((theme) => ({
   movie: {
